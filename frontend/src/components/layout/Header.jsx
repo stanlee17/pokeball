@@ -16,6 +16,11 @@ const StyledNav = styled.div`
   .nav-links {
     display: flex;
 
+    a {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
     a:not(:last-of-type) {
       margin-right: 2rem;
     }
@@ -23,11 +28,11 @@ const StyledNav = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 800;
 `;
 
-const Navbar = () => {
+const Header = () => {
   return (
     <StyledHeader>
       <Container>
@@ -35,7 +40,7 @@ const Navbar = () => {
           <StyledLink to="/">Pokeball</StyledLink>
           <div className="nav-links">
             <Link to="/pokemon/add">Add Pokemon</Link>
-            <Link to="/user/profile">Profile</Link>
+            {/* <Link to="/user/profile">Profile</Link> */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Signup</Link>
           </div>
@@ -45,4 +50,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 // Pages & Components
 import Home from './pages/Home';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import AddPokemon from './pages/AddPokemon';
 
 const StyledPages = styled.div`
   flex: 1;
@@ -14,10 +15,11 @@ const StyledPages = styled.div`
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Header />
       <StyledPages>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/pokemon/add" element={<AddPokemon />} />
         </Routes>
       </StyledPages>
       <Footer />

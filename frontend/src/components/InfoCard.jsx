@@ -7,7 +7,6 @@ import { nationalDex } from '../utils/utils';
 const Card = styled.div`
   overflow: hidden;
   background-color: var(--primary-dark);
-  border-radius: 0.5rem;
   padding: 2rem;
   display: flex;
   max-width: 250px;
@@ -17,7 +16,7 @@ const Card = styled.div`
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
 `;
 
@@ -39,6 +38,7 @@ const CardBody = styled.div`
   .card-types {
     margin-top: 0.6rem;
     font-size: 0.8rem;
+    font-weight: 600;
 
     div:not(:last-child) {
       margin-right: 0.5rem;

@@ -1,18 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;700&display=swap');
 
 :root {
   /* Dark mode */
   --background-dark: #1e1e1e;
   --primary-dark: #242424;
-  --footer-dark: rgb(27, 27, 27);
+  --footer-dark: #1b1b1b;
 
-  --brand-primary: #f87171;
+  --brand-primary: #e11d48;
 
   /* Text color */
   --text-white: #fff;
   --text-lgrey: #7e7e7e;
   --text-black: #000;
-  --text-brand: #fca5a5;
+  --text-brand: #fda4af;
+  --text-lbrand: #fecdd3;
+  --text-placeholder: #7c7c7c;
+  --text-input: #2f2f2f;
 
   /* Types Color */
   --grass: #16a34a;
@@ -26,7 +29,7 @@
 }
 
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Mulish', sans-serif;
 }
 
 .App {
@@ -50,7 +53,7 @@ a:hover {
 .grass-type,
 .poison-type {
   display: inline-block;
-  border-radius: 20rem;
+  border-radius: 5rem;
   padding: 0.3rem 1rem;
 }
 
