@@ -45,6 +45,8 @@ const createPokemon = async (req, res) => {
     weaknesses,
   } = req.body;
 
+
+
   // Add pokemon data to DB
   try {
     const pokemon = await Pokemon.create({

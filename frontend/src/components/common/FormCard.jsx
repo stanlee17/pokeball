@@ -14,9 +14,10 @@ const Styles = styled.div`
   }
   .lead-card {
     margin: auto;
-    padding: 3rem;
+    padding: 4rem;
+    border-radius: 0.5rem;
     background-color: var(--primary-dark);
-    min-width: ${(props) => (props.authform ? '40vw' : '60vw')};
+    min-width: ${(props) => (props.authform ? '50%' : '100%')};
   }
   .lead-card .card-title {
     font-size: 2rem;
@@ -24,23 +25,14 @@ const Styles = styled.div`
     font-weight: 600;
     text-align: center;
   }
-
-  .card-subtitle {
-    padding-bottom: 1rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-lbrand);
-    text-align: center;
-  }
 `;
 
-const FormCard = ({ title, subtitle, authform, children }) => {
+const FormCard = ({ title, authform, children }) => {
   return (
     <Styles authform={authform ? 1 : 0}>
       <Container>
         <div className="lead-card">
-          <p className="card-title">{title}</p>
-          {subtitle && <p className="card-subtitle">{subtitle}</p>}
+          <p className="card-title mb-4">{title}</p>
           <div>{children}</div>
         </div>
       </Container>

@@ -8,3 +8,89 @@ export const nationalDex = (number) => {
 
   return str;
 };
+
+export const options = [
+  { value: 'Normal', label: 'Normal' },
+  { value: 'Fighting', label: 'Fighting' },
+  { value: 'Flying', label: 'Flying' },
+  { value: 'Poison', label: 'Poison' },
+  { value: 'Ground', label: 'Ground' },
+  { value: 'Rock', label: 'Rock' },
+  { value: 'Bug', label: 'Bug' },
+  { value: 'Ghost', label: 'Ghost' },
+  { value: 'Steel', label: 'Steel' },
+  { value: 'Fire', label: 'Fire' },
+  { value: 'Water', label: 'Grass' },
+  { value: 'Electric', label: 'Electric' },
+  { value: 'Psychic', label: 'Psychic' },
+  { value: 'Ice', label: 'Dragon' },
+  { value: 'Dark', label: 'Dark' },
+  { value: 'Fairy', label: 'Fairy' },
+];
+
+export const colorStyles = {
+  option: (styles, { isFocused }) => ({
+    ...styles,
+    color: 'var(--text-black)',
+    backgroundColor: isFocused && 'null',
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: 'var(--brand-300)',
+    },
+  }),
+  control: (styles) => ({
+    ...styles,
+    borderRadius: '5px',
+    backgroundColor: 'var(--text-input)',
+    border: 'none',
+    color: '#fff',
+    padding: '0.3rem .5rem',
+    boxShadow: 'none',
+    outline: 'none',
+  }),
+  input: (styles) => ({
+    ...styles,
+    color: '#fff',
+  }),
+  menuList: (styles) => ({
+    ...styles,
+    paddingTop: 0,
+    paddingBottom: 0,
+    borderRadius: '.24rem',
+  }),
+  dropdownIndicator: (styles) => ({
+    ...styles,
+    cursor: 'pointer',
+    color: '#fff',
+    ':hover': {
+      color: 'var(--brand-300)',
+    },
+  }),
+  clearIndicator: (styles) => ({
+    ...styles,
+    cursor: 'pointer',
+    color: '#fff',
+    ':hover': {
+      color: 'var(--brand-300)',
+    },
+  }),
+  multiValue: (styles) => ({
+    ...styles,
+    backgroundColor: 'grey',
+    padding: '.0 .5rem',
+    borderRadius: '5px',
+    color: '#fff',
+  }),
+  multiValueLabel: (styles) => ({
+    ...styles,
+    color: 'white',
+  }),
+  multiValueRemove: (styles) => ({
+    ...styles,
+    color: '#fff',
+    cursor: 'pointer',
+    ':hover': {
+      color: '#fff',
+    },
+  }),
+};

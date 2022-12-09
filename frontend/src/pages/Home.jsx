@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 
 // Components
-import InfoCard from '../components/InfoCard';
+import PokemonCard from '../components/common/PokemonCard';
 
 const Wrapper = styled.div`
   display: grid;
@@ -34,7 +34,7 @@ const Home = () => {
         <Wrapper>
           {pokedex &&
             pokedex.map((pokemon) => (
-              <InfoCard
+              <PokemonCard
                 key={pokemon._id}
                 ndex={pokemon.ndex}
                 name={pokemon.name}

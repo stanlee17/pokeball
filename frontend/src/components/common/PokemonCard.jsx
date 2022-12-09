@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// Import utilities
-import { nationalDex } from '../utils/utils';
+// Import utils
+import { nationalDex } from '../../utils/utils';
 
 const Card = styled.div`
   overflow: hidden;
   background-color: var(--primary-dark);
   padding: 2rem;
+  border-radius: 5px;
   display: flex;
   max-width: 250px;
   flex-direction: column;
@@ -16,7 +17,7 @@ const Card = styled.div`
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 `;
 
@@ -26,7 +27,7 @@ const CardBody = styled.div`
   }
 
   .card-ndex {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-lgrey);
   }
@@ -38,15 +39,15 @@ const CardBody = styled.div`
   .card-types {
     margin-top: 0.6rem;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 500;
 
     div:not(:last-child) {
-      margin-right: 0.5rem;
+      margin-right: 0.7rem;
     }
   }
 `;
 
-const InfoCard = ({ name, img, types, ndex }) => {
+const PokemonCard = ({ name, img, types, ndex }) => {
   return (
     <Card>
       <CardBody>
@@ -63,4 +64,4 @@ const InfoCard = ({ name, img, types, ndex }) => {
   );
 };
 
-export default InfoCard;
+export default PokemonCard;

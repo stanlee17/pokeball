@@ -10,6 +10,7 @@ const {
   updatePokemon,
 } = require('../controllers/pokemonController');
 
+
 // GET ALL Pokemon
 router.get('/', getAllPokemon);
 
