@@ -20,16 +20,16 @@ const StyledButton = styled.button`
 const Button = ({
   backgroundColor,
   children,
+  loadingState,
   onClick,
   className,
-  disabled,
 }) => {
   return (
     <StyledButton
       className={className}
       onClick={onClick}
       type={onClick ? 'button' : 'submit'}
-      disabled={disabled}
+      disabled={loadingState}
       backgroundColor={backgroundColor}
     >
       {children}

@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import FileBase64 from 'react-file-base64';
 
 // Import components & utils
-import FormCard from '../../components/common/FormCard';
-import Button from '../../components/common/Button';
+import FormCard from '../common/FormCard';
+import Button from '../common/Button';
 import { options, colorStyles } from '../../utils/utils';
 
 // React Select Animation
@@ -39,20 +39,19 @@ const StyledForm = styled(Form)`
   }
 `;
 
-const PokemonForm = ({
+const AddForm = ({
   pokemonData,
   setPokemonData,
-  error,
-  typesDefault,
-  weaknessesDefault,
-  handleSubmit,
   handleTextChange,
   handleTypes,
   handleWeaknesses,
   handleStatsChange,
+  handleSubmit,
+  error,
+  loading,
 }) => {
   return (
-    <FormCard title="Edit Pokemon">
+    <FormCard title="Add Pokemon">
       <StyledForm onSubmit={handleSubmit} encType="multipart/form-data">
         {/* GROUP 1: Name, National Dex No, Category  */}
         <Row className="mt-4">
@@ -63,7 +62,6 @@ const PokemonForm = ({
                 type="text"
                 placeholder="Enter name"
                 name="name"
-                value={pokemonData.name}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -75,7 +73,6 @@ const PokemonForm = ({
                 type="number"
                 placeholder="National Dex Number"
                 name="ndex"
-                value={pokemonData.ndex}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -87,7 +84,6 @@ const PokemonForm = ({
                 type="text"
                 placeholder="Enter category"
                 name="category"
-                value={pokemonData.category}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -103,7 +99,6 @@ const PokemonForm = ({
                 type="number"
                 placeholder="Enter weight (kg)"
                 name="weight"
-                value={pokemonData.weight}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -115,7 +110,6 @@ const PokemonForm = ({
                 type="number"
                 placeholder="Enter height (cm)"
                 name="height"
-                value={pokemonData.height}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -127,7 +121,6 @@ const PokemonForm = ({
                 type="text"
                 placeholder="Enter abilities"
                 name="abilities"
-                value={pokemonData.abilities}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -140,8 +133,6 @@ const PokemonForm = ({
             <Form.Group className="mb-4">
               <Form.Label>Types</Form.Label>
               <Select
-                key={typesDefault}
-                defaultValue={typesDefault}
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 onChange={handleTypes}
@@ -155,8 +146,6 @@ const PokemonForm = ({
             <Form.Group className="mb-4">
               <Form.Label>Weaknesses</Form.Label>
               <Select
-                key={weaknessesDefault}
-                defaultValue={weaknessesDefault}
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 onChange={handleWeaknesses}
@@ -179,7 +168,6 @@ const PokemonForm = ({
                   type="number"
                   placeholder="Insert HP..."
                   name="hp"
-                  value={pokemonData.stats.hp}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -191,7 +179,6 @@ const PokemonForm = ({
                   type="number"
                   placeholder="Insert attack..."
                   name="atk"
-                  value={pokemonData.stats.atk}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -203,7 +190,6 @@ const PokemonForm = ({
                   type="number"
                   placeholder="Insert defense..."
                   name="def"
-                  value={pokemonData.stats.def}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -219,7 +205,6 @@ const PokemonForm = ({
                   type="number"
                   placeholder="Insert sp attack..."
                   name="sp_atk"
-                  value={pokemonData.stats.sp_atk}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -231,7 +216,6 @@ const PokemonForm = ({
                   type="number"
                   placeholder="Insert sp defense..."
                   name="sp_def"
-                  value={pokemonData.stats.sp_def}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -243,7 +227,6 @@ const PokemonForm = ({
                   type="number"
                   placeholder="Insert speed..."
                   name="spd"
-                  value={pokemonData.stats.spd}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -260,7 +243,6 @@ const PokemonForm = ({
             type="text"
             placeholder="Enter description..."
             name="description"
-            value={pokemonData.description}
             onChange={handleTextChange}
           />
         </Form.Group>
@@ -269,16 +251,18 @@ const PokemonForm = ({
           <Form.Label>Pokemon Image</Form.Label>
           <FileBase64
             multiple={false}
-            onDone={({ base64 }) =>
-              setPokemonData({ ...pokemonData, image: base64 })
-            }
+            onDone={({ base64 }) => {
+              setPokemonData({ ...pokemonData, image: base64 });
+            }}
           />
         </Form.Group>
-        <Button className="my-2">Add Pokemon</Button>
+        <Button className="my-2" loadingState={loading}>
+          loading ? '...' : 'Add Pokemon'
+        </Button>
         {error && <div>{error}</div>}
       </StyledForm>
     </FormCard>
   );
 };
 
-export default PokemonForm;
+export default AddForm;

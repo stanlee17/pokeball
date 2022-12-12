@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
 // Import components & utils
-import PokemonForm from '../components/common/PokemonForm';
+import EditForm from '../components/Form/EditForm';
 import { selectDefaultValue } from '../utils/utils';
 
 const EditPokemon = () => {
@@ -124,6 +124,7 @@ const EditPokemon = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const pokemon = {
       name,
@@ -147,16 +148,19 @@ const EditPokemon = () => {
       },
     });
 
-    const data = await response.json();
+    const json = await response.json();
 
     if (!response.ok) {
-      setError(data.error);
+      setError(json.error);
     }
 
     if (response.ok) {
       setError(null);
-      console.log('new pokemon added', data);
+      console.log('new pokemon added', json);
+      navigate('/');
     }
+
+    setLoading(false);
   };
 
   if (loading) {
@@ -164,10 +168,9 @@ const EditPokemon = () => {
   }
 
   return (
-    <PokemonForm
+    <EditForm
       pokemonData={pokemonData}
       setPokemonData={setPokemonData}
-      error={error}
       typesDefault={selectDefaultValue(types)}
       weaknessesDefault={selectDefaultValue(weaknesses)}
       handleSubmit={handleSubmit}
@@ -175,6 +178,10 @@ const EditPokemon = () => {
       handleTypes={handleTypes}
       handleWeaknesses={handleWeaknesses}
       handleStatsChange={handleStatsChange}
+      error={error}
+      loading={loading}
+      preview={preview}
+      setPreview={setPreview}
     />
   );
 };
