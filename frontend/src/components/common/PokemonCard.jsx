@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // Import utils
 import { nationalDex } from '../../utils/utils';
@@ -10,7 +11,6 @@ const Card = styled.div`
   padding: 2rem;
   border-radius: 5px;
   display: flex;
-  max-width: 250px;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 150ms ease-in;
@@ -47,20 +47,28 @@ const CardBody = styled.div`
   }
 `;
 
-const PokemonCard = ({ name, img, types, ndex }) => {
+const StyledLink = styled(Link)`
+  &:hover {
+    color: white;
+  }
+`;
+
+const PokemonCard = ({ id, name, img, types, ndex }) => {
   return (
-    <Card>
-      <CardBody>
-        <img src={img} alt={name} className="card-img" />
-        <div className="card-ndex">{nationalDex(ndex)}</div>
-        <h4 className="card-title">{name}</h4>
-        <div className="card-types">
-          {types.map((type) => (
-            <div className={`${type.toLowerCase()}-type`}>{type}</div>
-          ))}
-        </div>
-      </CardBody>
-    </Card>
+    <StyledLink to={`/pokemon/${id}`}>
+      <Card key={id}>
+        <CardBody>
+          <img src={img} alt={name} className="card-img" />
+          <div className="card-ndex">{nationalDex(ndex)}</div>
+          <h4 className="card-title">{name}</h4>
+          <div className="card-types">
+            {types.map((type) => (
+              <div className={`${type.toLowerCase()}-type`}>{type}</div>
+            ))}
+          </div>
+        </CardBody>
+      </Card>
+    </StyledLink>
   );
 };
 

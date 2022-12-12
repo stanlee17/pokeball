@@ -35,7 +35,7 @@ const Home = () => {
           {pokedex &&
             pokedex.map((pokemon) => (
               <PokemonCard
-                key={pokemon._id}
+                id={pokemon._id}
                 ndex={pokemon.ndex}
                 name={pokemon.name}
                 img={pokemon.image}

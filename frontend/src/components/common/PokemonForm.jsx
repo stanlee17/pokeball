@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { Form, Row, Col } from 'react-bootstrap';
@@ -6,10 +6,11 @@ import styled from 'styled-components';
 import FileBase64 from 'react-file-base64';
 
 // Import components & utils
-import FormCard from '../components/common/FormCard';
-import Button from '../components/common/Button';
-import { options, colorStyles } from '../utils/utils';
+import FormCard from '../../components/common/FormCard';
+import Button from '../../components/common/Button';
+import { options, colorStyles } from '../../utils/utils';
 
+// React Select Animation
 const animatedComponents = makeAnimated();
 
 const StyledForm = styled(Form)`
@@ -38,134 +39,21 @@ const StyledForm = styled(Form)`
   }
 `;
 
-const AddPokemon = () => {
-  const [pokemonData, setPokemonData] = useState({
-    name: '',
-    image: '',
-    description: '',
-    ndex: '',
-    height: '',
-    weight: '',
-    category: '',
-    abilities: '',
-    stats: {
-      hp: '',
-      atk: '',
-      def: '',
-      sp_atk: '',
-      sp_def: '',
-      spd: '',
-    },
-    types: [],
-    weaknesses: [],
-  });
-
-  const [error, setError] = useState(null);
-
-  const {
-    name,
-    description,
-    image,
-    ndex,
-    height,
-    weight,
-    category,
-    abilities,
-    stats,
-    types,
-    weaknesses,
-  } = pokemonData;
-
-  const handleTypes = (selectedOption) => {
-    console.log(selectedOption);
-
-    let types = [];
-    selectedOption.map((option) => types.push(option.value));
-
-    setPokemonData({
-      ...pokemonData,
-      types: types,
-    });
-  };
-
-  const handleWeaknesses = (selectedOption) => {
-    console.log(selectedOption);
-
-    let weaknesses = [];
-    selectedOption.map((option) => weaknesses.push(option.value));
-
-    setPokemonData({
-      ...pokemonData,
-      weaknesses: weaknesses,
-    });
-  };
-
-  const handleTextChange = (e) => {
-    const { name, value } = e.target;
-
-    setPokemonData({
-      ...pokemonData,
-      [name]: value,
-    });
-  };
-
-  const handleStatsChange = (e) => {
-    const { name, value } = e.target;
-
-    setPokemonData({
-      ...pokemonData,
-      stats: {
-        ...stats,
-        [name]: value,
-      },
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const pokemon = {
-      name,
-      description,
-      image,
-      ndex,
-      height,
-      weight,
-      category,
-      abilities,
-      stats,
-      types,
-      weaknesses,
-    };
-    console.log(pokemon);
-
-    const response = await fetch('/api/pokemon', {
-      method: 'POST',
-      body: JSON.stringify(pokemon),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      setError(data.error);
-    }
-
-    if (response.ok) {
-      setError(null);
-      console.log('new pokemon added', data);
-    }
-  };
-
+const PokemonForm = ({
+  pokemonData,
+  setPokemonData,
+  error,
+  typesDefault,
+  weaknessesDefault,
+  handleSubmit,
+  handleTextChange,
+  handleTypes,
+  handleWeaknesses,
+  handleStatsChange,
+}) => {
   return (
-    <FormCard title="Add New Pokemon">
-      <StyledForm
-        onSubmit={handleSubmit}
-        method="post"
-        encType="multipart/form-data"
-      >
+    <FormCard title="Edit Pokemon">
+      <StyledForm onSubmit={handleSubmit} encType="multipart/form-data">
         {/* GROUP 1: Name, National Dex No, Category  */}
         <Row className="mt-4">
           <Col lg={4} md={4} sm={12}>
@@ -175,7 +63,7 @@ const AddPokemon = () => {
                 type="text"
                 placeholder="Enter name"
                 name="name"
-                value={name}
+                value={pokemonData.name}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -187,7 +75,7 @@ const AddPokemon = () => {
                 type="number"
                 placeholder="National Dex Number"
                 name="ndex"
-                value={ndex}
+                value={pokemonData.ndex}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -199,7 +87,7 @@ const AddPokemon = () => {
                 type="text"
                 placeholder="Enter category"
                 name="category"
-                value={category}
+                value={pokemonData.category}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -215,7 +103,7 @@ const AddPokemon = () => {
                 type="number"
                 placeholder="Enter weight (kg)"
                 name="weight"
-                value={weight}
+                value={pokemonData.weight}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -227,7 +115,7 @@ const AddPokemon = () => {
                 type="number"
                 placeholder="Enter height (cm)"
                 name="height"
-                value={height}
+                value={pokemonData.height}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -239,7 +127,7 @@ const AddPokemon = () => {
                 type="text"
                 placeholder="Enter abilities"
                 name="abilities"
-                value={abilities}
+                value={pokemonData.abilities}
                 onChange={handleTextChange}
               />
             </Form.Group>
@@ -252,6 +140,8 @@ const AddPokemon = () => {
             <Form.Group className="mb-4">
               <Form.Label>Types</Form.Label>
               <Select
+                key={typesDefault}
+                defaultValue={typesDefault}
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 onChange={handleTypes}
@@ -265,6 +155,8 @@ const AddPokemon = () => {
             <Form.Group className="mb-4">
               <Form.Label>Weaknesses</Form.Label>
               <Select
+                key={weaknessesDefault}
+                defaultValue={weaknessesDefault}
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 onChange={handleWeaknesses}
@@ -287,7 +179,7 @@ const AddPokemon = () => {
                   type="number"
                   placeholder="Insert HP..."
                   name="hp"
-                  value={stats.hp}
+                  value={pokemonData.stats.hp}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -299,7 +191,7 @@ const AddPokemon = () => {
                   type="number"
                   placeholder="Insert attack..."
                   name="atk"
-                  value={stats.atk}
+                  value={pokemonData.stats.atk}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -311,7 +203,7 @@ const AddPokemon = () => {
                   type="number"
                   placeholder="Insert defense..."
                   name="def"
-                  value={stats.def}
+                  value={pokemonData.stats.def}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -327,7 +219,7 @@ const AddPokemon = () => {
                   type="number"
                   placeholder="Insert sp attack..."
                   name="sp_atk"
-                  value={stats.sp_atk}
+                  value={pokemonData.stats.sp_atk}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -339,7 +231,7 @@ const AddPokemon = () => {
                   type="number"
                   placeholder="Insert sp defense..."
                   name="sp_def"
-                  value={stats.sp_def}
+                  value={pokemonData.stats.sp_def}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -351,7 +243,7 @@ const AddPokemon = () => {
                   type="number"
                   placeholder="Insert speed..."
                   name="spd"
-                  value={stats.spd}
+                  value={pokemonData.stats.spd}
                   onChange={handleStatsChange}
                 />
               </Form.Group>
@@ -368,7 +260,7 @@ const AddPokemon = () => {
             type="text"
             placeholder="Enter description..."
             name="description"
-            value={description}
+            value={pokemonData.description}
             onChange={handleTextChange}
           />
         </Form.Group>
@@ -389,4 +281,4 @@ const AddPokemon = () => {
   );
 };
 
-export default AddPokemon;
+export default PokemonForm;

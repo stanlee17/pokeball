@@ -9,6 +9,7 @@ export const nationalDex = (number) => {
   return str;
 };
 
+// react-select options
 export const options = [
   { value: 'Normal', label: 'Normal' },
   { value: 'Fighting', label: 'Fighting' },
@@ -28,6 +29,20 @@ export const options = [
   { value: 'Fairy', label: 'Fairy' },
 ];
 
+/* 
+  Converts from an array of items to an array of objects with the names of "value" and "label" in order to allow react-select
+  default value to work properly as it does not accept just an array of items
+
+  e.g. ['Fighting', 'Normal'] -> [{ value: 'Fighting', label: 'Fighting'}, { value: 'Normal', label: 'Normal}]
+*/
+export const selectDefaultValue = (items) => {
+  return items.map((item) => ({
+    value: item,
+    label: item,
+  }));
+};
+
+// react-select input styles
 export const colorStyles = {
   option: (styles, { isFocused }) => ({
     ...styles,
