@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 
 // GET ALL Pokemon
 const getAllPokemon = async (req, res) => {
-  // Get All Pokemon
-  const allPokemon = await Pokemon.find({});
+  // Get All Pokemon & sort based on national pokedex number
+  const allPokemon = await Pokemon.find({}).sort({ ndex: 1 });
 
   res.status(200).json(allPokemon);
 };

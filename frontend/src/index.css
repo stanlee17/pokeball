@@ -16,10 +16,6 @@
   --text-black: #000;
   --text-placeholder: #7c7c7c;
   --text-input: #2f2f2f;
-
-  /* Types Color */
-  --grass: #16a34a;
-  --poison: #9333ea;
 }
 
 * {
@@ -48,19 +44,4 @@ a {
 
 a:hover {
   color: var(--brand-200);
-}
-
-.grass-type,
-.poison-type {
-  display: inline-block;
-  border-radius: 5px;
-  padding: 0.3rem 1rem;
-}
-
-.grass-type {
-  background-color: var(--grass);
-}
-
-.poison-type {
-  background-color: var(--poison);
 }

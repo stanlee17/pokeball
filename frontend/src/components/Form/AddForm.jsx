@@ -239,7 +239,7 @@ const AddForm = ({
           <Form.Label>Description</Form.Label>
           <Form.Control
             as="textarea"
-            rows="6"
+            rows="8"
             type="text"
             placeholder="Enter description..."
             name="description"

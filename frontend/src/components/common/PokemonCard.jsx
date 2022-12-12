@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// Import utils
+// Import components & utils
+import Types from './Types';
 import { nationalDex } from '../../utils/utils';
 
 const Card = styled.div`
@@ -63,7 +64,7 @@ const PokemonCard = ({ id, name, img, types, ndex }) => {
           <h4 className="card-title">{name}</h4>
           <div className="card-types">
             {types.map((type) => (
-              <div className={`${type.toLowerCase()}-type`}>{type}</div>
+              <Types type={type}>{type}</Types>
             ))}
           </div>
         </CardBody>
