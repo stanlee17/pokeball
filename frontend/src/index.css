@@ -10,12 +10,15 @@
   --brand-300: #ff9d8c;
   --brand-200: #feb4aa;
 
-  /* Text color */
+  /* Text colors */
   --text-white: #fff;
   --text-lgrey: #7e7e7e;
   --text-black: #000;
   --text-placeholder: #7c7c7c;
   --text-input: #2f2f2f;
+
+  /* Progress Bar colors */
+  --progress-bg: #383838;
 }
 
 * {

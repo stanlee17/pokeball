@@ -257,7 +257,7 @@ const AddForm = ({
           />
         </Form.Group>
         <Button className="my-2" loadingState={loading}>
-          loading ? '...' : 'Add Pokemon'
+          {loading ? '...' : 'Add Pokemon'}
         </Button>
         {error && <div>{error}</div>}
       </StyledForm>

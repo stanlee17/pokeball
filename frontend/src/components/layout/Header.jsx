@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
+import Pokeball from '../../images/pokeball.svg';
 
 const StyledHeader = styled.header`
   background-color: var(--primary-dark);
@@ -27,9 +28,18 @@ const StyledNav = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
+const StyledLogo = styled(Link)`
+  display: flex;
   font-size: 1.8rem;
   font-weight: 800;
+
+  img {
+    padding-right: 0.6rem;
+  }
+
+  &:hover {
+    color: var(--text-white);
+  }
 `;
 
 const Header = () => {
@@ -37,7 +47,10 @@ const Header = () => {
     <StyledHeader>
       <Container>
         <StyledNav>
-          <StyledLink to="/">Pokeball</StyledLink>
+          <StyledLogo to="/">
+            <img src={Pokeball} alt="" />
+            Pokeball
+          </StyledLogo>
           <div className="nav-links">
             <Link to="/pokemon/add">Add Pokemon</Link>
             {/* <Link to="/user/profile">Profile</Link> */}
