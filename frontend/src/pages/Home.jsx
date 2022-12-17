@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Import components & utils
-import Types from '../components/common/Types';
+import Type from '../components/common/Type';
 import { nationalDex } from '../utils/utils';
 
 const Wrapper = styled.div`
@@ -113,7 +113,7 @@ const Home = () => {
                   <h4 className="card-title">{pokemon.name}</h4>
                   <div className="card-types">
                     {pokemon.types.map((type) => (
-                      <Types type={type}>{type}</Types>
+                      <Type type={type}>{type}</Type>
                     ))}
                   </div>
                 </CardBody>

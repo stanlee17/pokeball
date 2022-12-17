@@ -24,7 +24,7 @@ const Progress = ({ data, color }) => {
   setTimeout(() => {
     const newStyle = {
       opacity: 1,
-      width: `${data}%`,
+      width: `${data / 2}%`,
     };
 
     setStyle(newStyle);
